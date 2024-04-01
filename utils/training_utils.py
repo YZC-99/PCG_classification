@@ -1,7 +1,7 @@
 import torch.optim as optim
 from torch.optim.lr_scheduler import _LRScheduler,LambdaLR
 
-def get_optimizer(model,name,base_lr,lr_decouple):
+def get_optimizer(model,name,base_lr):
     if name == 'SGD':
         optimizer = optim.SGD(model.parameters(), lr=base_lr, momentum=0.9, weight_decay=0.0001)
     elif name == 'AdamW':

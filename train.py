@@ -26,15 +26,17 @@ parser.add_argument('--lr_decay_patience',type=int,default=6)
 # ==============lr===================
 
 # ==============training params===================
-parser.add_argument('--seed',type=int,default=42)
-parser.add_argument('--device',type=int,default=0)
-parser.add_argument('--num_works',type=int,default=0)
 parser.add_argument('--num_classes',type=int,default=2)
 parser.add_argument('--batch_size',type=int,default=4)
 parser.add_argument('--val_batch_size',type=int,default=4)
 parser.add_argument('--max_epoch',type=int,default=1000)
 parser.add_argument('--early_stop_patience',type=int,default=30)
 parser.add_argument('--save_period',type=int,default=10)
+
+parser.add_argument('--seed',type=int,default=42)
+parser.add_argument('--device',type=int,default=0)
+parser.add_argument('--num_works',type=int,default=0)
+
 parser.add_argument('--val_period',type=int,default=1)
 parser.add_argument('--exp',type=str,default='PhysioNetCinC_Challenge_2016')
 parser.add_argument('--dataset_name',type=str,default='PhysioNetCinC_Challenge_2016')
@@ -63,7 +65,6 @@ def create_version_folder(snapshot_path):
 
 args = parser.parse_args()
 snapshot_path = "./exp_2d_pcg/" + args.exp + "/"
-max_iterations = args.max_iterations
 base_lr = args.base_lr
 
 
@@ -85,23 +86,24 @@ if __name__ == '__main__':
     model.to(device)
 
     # init dataset
-    root_base = '/home/gu721/yzc/data/dr/'
+    root_base = 'E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/training'
+    csv_path = "E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/annotations/annotations/all_labels_samples.csv"
     if args.autodl:
         root_base = '/root/autodl-tmp/'
 
-    train_dataset = PhysioNetDataset()
+    train_dataset = PhysioNetDataset(root_base,csv_path)
 
     train_dataloder = DataLoader(train_dataset,
-                                    batch_size=args.batch_size,
-                                    num_workers=args.num_works,
-                                    pin_memory=True,
-                                    drop_last= True,
-                                    shuffle=True
+                                batch_size=args.batch_size,
+                                num_workers=args.num_works,
+                                pin_memory=True,
+                                drop_last= True,
+                                shuffle=True
                                     )
 
-    val_dataset = PhysioNetDataset()
+    val_dataset = PhysioNetDataset(root_base,csv_path,training=False)
 
-    val_dataloder = DataLoader(val_dataset,batch_size=1,num_workers=1,drop_last=False)
+    val_dataloder = DataLoader(val_dataset,batch_size=args.val_batch_size,num_workers=1,drop_last=False)
 
     val_iteriter = tqdm(val_dataloder)
     model.train()
@@ -114,7 +116,7 @@ if __name__ == '__main__':
     else:
         criteria = CrossEntropyLoss()
 
-    evaluator = Evaluate_get_metrics()
+    evaluator = Evaluate_get_metrics(device=device)
 
     iter_num = 0
     max_epoch = args.max_epoch
@@ -137,9 +139,9 @@ if __name__ == '__main__':
             input_data, labels = batch_data
             input_data, labels = input_data.to(device), labels.to(device)
 
-            outputs = model(input_data)
+            outputs = model(input_data).squeeze()
 
-            loss = criteria(outputs,labels)
+            loss = criteria(outputs[:,1,...],labels.float())
 
             optimizer.zero_grad()
             loss.backward()
@@ -161,10 +163,10 @@ if __name__ == '__main__':
                     outputs = model(input_data)
                     if args.num_classes == 2:
                         outputs = torch.sigmoid(outputs)
-                        preds = (outputs[:,1,:] > 0.5).to(torch.int8)
+                        preds = (outputs[:,1,:] > 0.5).float()
                     else:
                         preds = torch.softmax(outputs,dim=1).argmax().squeeze()
-                    evaluator.add(preds,labels)
+                    evaluator.add(preds,labels.unsqueeze(1))
                 metrics = evaluator.compute()
                 Sensitivity = metrics['Sensitivity']
                 Specificity = metrics['Specificity']

@@ -35,13 +35,15 @@ class PhysioNetDataset(Dataset):
         self.training = training
         self.window_length= 5000
         self.segments = []
+        tag = 'training' if training else 'val'
         with open(csv_path, 'r') as f:
             self.all_data_info = f.read().splitlines()
-        print("=================共{}条心音样本===============".format(len(self.all_data_info)))
+        print("================={}共{}条心音样本===============".format(tag,len(self.all_data_info)))
         for data_info in self.all_data_info:
             database_name = data_info.split(',')[0]
             current_name = data_info.split(',')[1]
             current_label = data_info.split(',')[2]
+            current_label = 0 if current_label == -1 else 1
             if training:
                 sliding_step_size = 2500 if current_label == -1 else 650
             else:
@@ -65,7 +67,7 @@ class PhysioNetDataset(Dataset):
                 # 如果已经取了末尾的window_length长度的数据，则终止循环
                 if len(segment) < self.window_length:
                     break
-        print("=================共{}个样本===============".format(len(self.segments)))
+        print("================={}共{}个样本===============".format(tag,len(self.segments)))
     def __len__(self):
         return len(self.segments)
 

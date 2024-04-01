@@ -4,12 +4,12 @@ Sensitive,Specificity,Precision,Accuracy,F1-score
 from torchmetrics import Recall,Specificity,Precision,Accuracy,F1Score
 
 class Evaluate_get_metrics(object):
-    def __init__(self):
-        self.accuracy = Accuracy()
-        self.precision = Precision(average='macro', num_classes=2)
-        self.specificity = Specificity(average='macro', num_classes=2)
-        self.f1 = F1Score(average='macro', num_classes=2)
-        self.recall = Recall(average='macro', num_classes=2)  # Recall is the same as sensitivity
+    def __init__(self,device):
+        self.accuracy = Accuracy().to(device)
+        self.precision = Precision(task='binary').to(device)
+        self.specificity = Specificity(task='binary').to(device)
+        self.f1 = F1Score(task='binary').to(device)
+        self.recall = Recall(task='binary').to(device)  # Recall is the same as sensitivity
 
     def add(self, preds, labels):
         """
@@ -19,7 +19,6 @@ class Evaluate_get_metrics(object):
         :param labels: True labels (batch_size,)
         """
         # Ensure preds and labels are torch tensors
-        preds, labels = preds, labels
         self.accuracy.update(preds, labels)
         self.precision.update(preds, labels)
         self.specificity.update(preds, labels)
