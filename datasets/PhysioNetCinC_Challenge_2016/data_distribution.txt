@@ -1,0 +1,711 @@
+Original Data Distribution:
+Total samples: 3153
+Distribution of data_base_name:
+training-e    0.651443
+training-b    0.155408
+training-a    0.129718
+training-f    0.036156
+training-d    0.017444
+training-c    0.009832
+Distribution of label:
+-1    0.78909
+ 1    0.21091
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.713936
+-1    0.286064
+training-b:
+-1    0.787755
+ 1    0.212245
+training-c:
+ 1    0.774194
+-1    0.225806
+training-d:
+ 1    0.509091
+-1    0.490909
+training-e:
+-1    0.910906
+ 1    0.089094
+training-f:
+-1    0.701754
+ 1    0.298246
+
+--------------------------------------------------
+
+Fold 1 Training Data Distribution:
+Total samples: 2837
+Distribution of data_base_name:
+training-e    0.651745
+training-b    0.155446
+training-a    0.129714
+training-f    0.035953
+training-d    0.017272
+training-c    0.009870
+Distribution of label:
+-1    0.789566
+ 1    0.210434
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.711957
+-1    0.288043
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.75
+-1    0.25
+training-d:
+ 1    0.510204
+-1    0.489796
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.705882
+ 1    0.294118
+
+--------------------------------------------------
+
+Fold 1 Validation Data Distribution:
+Total samples: 316
+Distribution of data_base_name:
+training-e    0.648734
+training-b    0.155063
+training-a    0.129747
+training-f    0.037975
+training-d    0.018987
+training-c    0.009494
+Distribution of label:
+-1    0.78481
+ 1    0.21519
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.731707
+-1    0.268293
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+1    1.0
+training-d:
+ 1    0.5
+-1    0.5
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.666667
+ 1    0.333333
+
+--------------------------------------------------
+
+Fold 2 Training Data Distribution:
+Total samples: 2837
+Distribution of data_base_name:
+training-e    0.651745
+training-b    0.155446
+training-a    0.129714
+training-f    0.035953
+training-d    0.017272
+training-c    0.009870
+Distribution of label:
+-1    0.789566
+ 1    0.210434
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.711957
+-1    0.288043
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.75
+-1    0.25
+training-d:
+ 1    0.510204
+-1    0.489796
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.705882
+ 1    0.294118
+
+--------------------------------------------------
+
+Fold 2 Validation Data Distribution:
+Total samples: 316
+Distribution of data_base_name:
+training-e    0.648734
+training-b    0.155063
+training-a    0.129747
+training-f    0.037975
+training-d    0.018987
+training-c    0.009494
+Distribution of label:
+-1    0.78481
+ 1    0.21519
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.731707
+-1    0.268293
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+1    1.0
+training-d:
+-1    0.5
+ 1    0.5
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.666667
+ 1    0.333333
+
+--------------------------------------------------
+
+Fold 3 Training Data Distribution:
+Total samples: 2837
+Distribution of data_base_name:
+training-e    0.651745
+training-b    0.155446
+training-a    0.129714
+training-f    0.035953
+training-d    0.017272
+training-c    0.009870
+Distribution of label:
+-1    0.789214
+ 1    0.210786
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.75
+-1    0.25
+training-d:
+ 1    0.510204
+-1    0.489796
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.705882
+ 1    0.294118
+
+--------------------------------------------------
+
+Fold 3 Validation Data Distribution:
+Total samples: 316
+Distribution of data_base_name:
+training-e    0.648734
+training-b    0.155063
+training-a    0.129747
+training-f    0.037975
+training-d    0.018987
+training-c    0.009494
+Distribution of label:
+-1    0.787975
+ 1    0.212025
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+1    1.0
+training-d:
+ 1    0.5
+-1    0.5
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.666667
+ 1    0.333333
+
+--------------------------------------------------
+
+Fold 4 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651515
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017266
+training-c    0.009866
+Distribution of label:
+-1    0.788584
+ 1    0.211416
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+ 1    0.510204
+-1    0.489796
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 4 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.650794
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.019048
+training-c    0.009524
+Distribution of label:
+-1    0.793651
+ 1    0.206349
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+ 1    0.5
+-1    0.5
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 5 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651515
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017266
+training-c    0.009866
+Distribution of label:
+-1    0.788584
+ 1    0.211416
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+ 1    0.510204
+-1    0.489796
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 5 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.650794
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.019048
+training-c    0.009524
+Distribution of label:
+-1    0.793651
+ 1    0.206349
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+ 1    0.5
+-1    0.5
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 6 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651163
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017618
+training-c    0.009866
+Distribution of label:
+-1    0.788584
+ 1    0.211416
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.789116
+ 1    0.210884
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+ 1    0.52
+-1    0.48
+training-e:
+-1    0.910714
+ 1    0.089286
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 6 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.653968
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.015873
+training-c    0.009524
+Distribution of label:
+-1    0.793651
+ 1    0.206349
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.77551
+ 1    0.22449
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+-1    0.6
+ 1    0.4
+training-e:
+-1    0.912621
+ 1    0.087379
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 7 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651163
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017618
+training-c    0.009866
+Distribution of label:
+-1    0.788936
+ 1    0.211064
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.789116
+ 1    0.210884
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+ 1    0.52
+-1    0.48
+training-e:
+-1    0.911255
+ 1    0.088745
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 7 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.653968
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.015873
+training-c    0.009524
+Distribution of label:
+-1    0.790476
+ 1    0.209524
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.77551
+ 1    0.22449
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+-1    0.6
+ 1    0.4
+training-e:
+-1    0.907767
+ 1    0.092233
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 8 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651163
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017618
+training-c    0.009866
+Distribution of label:
+-1    0.789288
+ 1    0.210712
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.789116
+ 1    0.210884
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+-1    0.5
+ 1    0.5
+training-e:
+-1    0.911255
+ 1    0.088745
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 8 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.653968
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.015873
+training-c    0.009524
+Distribution of label:
+-1    0.787302
+ 1    0.212698
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.77551
+ 1    0.22449
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+ 1    0.6
+-1    0.4
+training-e:
+-1    0.907767
+ 1    0.092233
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 9 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651163
+training-b    0.155391
+training-a    0.129669
+training-f    0.036293
+training-d    0.017618
+training-c    0.009866
+Distribution of label:
+-1    0.789288
+ 1    0.210712
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.714674
+-1    0.285326
+training-b:
+-1    0.789116
+ 1    0.210884
+training-c:
+ 1    0.785714
+-1    0.214286
+training-d:
+-1    0.5
+ 1    0.5
+training-e:
+-1    0.911255
+ 1    0.088745
+training-f:
+-1    0.699029
+ 1    0.300971
+
+--------------------------------------------------
+
+Fold 9 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.653968
+training-b    0.155556
+training-a    0.130159
+training-f    0.034921
+training-d    0.015873
+training-c    0.009524
+Distribution of label:
+-1    0.787302
+ 1    0.212698
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.707317
+-1    0.292683
+training-b:
+-1    0.77551
+ 1    0.22449
+training-c:
+ 1    0.666667
+-1    0.333333
+training-d:
+ 1    0.6
+-1    0.4
+training-e:
+-1    0.907767
+ 1    0.092233
+training-f:
+-1    0.727273
+ 1    0.272727
+
+--------------------------------------------------
+
+Fold 10 Training Data Distribution:
+Total samples: 2838
+Distribution of data_base_name:
+training-e    0.651515
+training-b    0.155391
+training-a    0.130021
+training-f    0.035941
+training-d    0.017618
+training-c    0.009514
+Distribution of label:
+-1    0.789288
+ 1    0.210712
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.712737
+-1    0.287263
+training-b:
+-1    0.786848
+ 1    0.213152
+training-c:
+ 1    0.777778
+-1    0.222222
+training-d:
+-1    0.5
+ 1    0.5
+training-e:
+-1    0.910763
+ 1    0.089237
+training-f:
+-1    0.705882
+ 1    0.294118
+
+--------------------------------------------------
+
+Fold 10 Validation Data Distribution:
+Total samples: 315
+Distribution of data_base_name:
+training-e    0.650794
+training-b    0.155556
+training-a    0.126984
+training-f    0.038095
+training-d    0.015873
+training-c    0.012698
+Distribution of label:
+-1    0.787302
+ 1    0.212698
+Distribution of label within each data_base_name:
+training-a:
+ 1    0.725
+-1    0.275
+training-b:
+-1    0.795918
+ 1    0.204082
+training-c:
+ 1    0.75
+-1    0.25
+training-d:
+ 1    0.6
+-1    0.4
+training-e:
+-1    0.912195
+ 1    0.087805
+training-f:
+-1    0.666667
+ 1    0.333333
+
+--------------------------------------------------
+
