@@ -92,8 +92,8 @@ if __name__ == '__main__':
     val_csv_path = "E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/annotations/annotations/all_labels_samples.csv"
     if args.autodl:
         root_base = '/root/autodl-tmp/PhysioNetCinC_Challenge_2016/training'
-        train_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-training.csv"
-        val_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-val.csv"
+        train_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-training.csv".format(args.fold)
+        val_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-val.csv".format(args.fold)
 
     train_dataset = PhysioNetDataset(root_base,train_csv_path)
 
