@@ -73,7 +73,7 @@ class PhysioNetDataset(Dataset):
 
     def __getitem__(self, item):
         segment, label = self.segments[item]
-        segment = torch.from_numpy(segment)
+        segment = torch.from_numpy(segment).float()
         segment = torch.unsqueeze(segment,dim=0)
         label = torch.tensor(int(label)).long()
         return segment, label

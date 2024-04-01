@@ -5,7 +5,7 @@ from torchmetrics import Recall,Specificity,Precision,Accuracy,F1Score
 
 class Evaluate_get_metrics(object):
     def __init__(self,device):
-        self.accuracy = Accuracy().to(device)
+        self.accuracy = Accuracy(task='binary').to(device)
         self.precision = Precision(task='binary').to(device)
         self.specificity = Specificity(task='binary').to(device)
         self.f1 = F1Score(task='binary').to(device)
