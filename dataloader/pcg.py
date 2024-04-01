@@ -54,7 +54,7 @@ class PhysioNetDataset(Dataset):
             # 中值滤波
             audio_data = band_pass_filter(audio_data, 2, 25, 400, fs)
             # 下采样
-            audio_data = samplerate.resample(audio_data.T, 1000 / fs, converter_type='sinc_best').T
+            audio_data = down_sample(audio_data,fs)
             # 归一化
             norm_data = standard_normal_variate(audio_data)
 
