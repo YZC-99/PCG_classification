@@ -161,8 +161,8 @@ if __name__ == '__main__':
         with torch.no_grad():
                 model.eval()
                 show_id = random.randint(0,len(val_iteriter))
-                for id,data in enumerate(val_iteriter):
-                    input_data, labels = batch_data
+                for id_val,val_data in enumerate(val_iteriter):
+                    input_data, labels = val_data
                     input_data, labels = input_data.to(device), labels.to(device)
                     outputs = model(input_data)
                     if args.num_classes == 2:
