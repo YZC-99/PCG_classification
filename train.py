@@ -177,6 +177,7 @@ if __name__ == '__main__':
             Precision = metrics['Precision']
             Accuracy = metrics['Accuracy']
             F1 = metrics['F1-score']
+            AUC = metrics['AUC']
 
             evaluator.reset()
             writer.add_scalar('val/Sensitivity', Sensitivity, epoch_num)
@@ -184,6 +185,7 @@ if __name__ == '__main__':
             writer.add_scalar('val/Precision', Precision, epoch_num)
             writer.add_scalar('val/Accuracy', Accuracy, epoch_num)
             writer.add_scalar('val/F1-score', F1, epoch_num)
+            writer.add_scalar('val/AUC', AUC, epoch_num)
 
             # 检查F1指标是否有提升
             if F1 > best_f1:
@@ -208,6 +210,7 @@ if __name__ == '__main__':
                     f.write("Precision = {:.4f}\n".format(metrics['Precision']))
                     f.write("Accuracy = {:.4f}\n".format(metrics['Accuracy']))
                     f.write("F1 = {:.4f}\n".format(metrics['F1-score']))
+                    f.write("AUC = {:.4f}\n".format(metrics['AUC']))
             else:
                 no_improve_epoch += 1
                 print("Epoch {}: No improvement in F1-score. Best is {:.4f}.".format(epoch_num, best_f1))

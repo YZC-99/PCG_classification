@@ -1,7 +1,7 @@
 """
 Sensitive,Specificity,Precision,Accuracy,F1-score
 """
-from torchmetrics import Recall,Specificity,Precision,Accuracy,F1Score
+from torchmetrics import Recall,Specificity,Precision,Accuracy,F1Score,AUROC
 
 class Evaluate_get_metrics(object):
     def __init__(self,device):
@@ -10,6 +10,7 @@ class Evaluate_get_metrics(object):
         self.specificity = Specificity(task='binary').to(device)
         self.f1 = F1Score(task='binary').to(device)
         self.recall = Recall(task='binary').to(device)  # Recall is the same as sensitivity
+        self.roc = AUROC(task='binary').to(device)  # Recall is the same as sensitivity
 
     def add(self, preds, labels):
         """
@@ -24,6 +25,7 @@ class Evaluate_get_metrics(object):
         self.specificity.update(preds, labels)
         self.f1.update(preds, labels)
         self.recall.update(preds, labels)
+        self.roc.update(preds, labels)
 
     def reset(self):
         """Reset the states of all metrics."""
@@ -32,6 +34,7 @@ class Evaluate_get_metrics(object):
         self.specificity.reset()
         self.f1.reset()
         self.recall.reset()
+        self.roc.reset()
 
     def compute(self):
         """Compute and return the evaluation metrics."""
@@ -40,6 +43,7 @@ class Evaluate_get_metrics(object):
             'Specificity': self.specificity.compute().item(),
             'Precision': self.precision.compute().item(),
             'Accuracy': self.accuracy.compute().item(),
-            'F1-score': self.f1.compute().item()
+            'F1-score': self.f1.compute().item(),
+            'AUC': self.roc.compute().item()
         }
         return metrics
