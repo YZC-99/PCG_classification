@@ -137,15 +137,15 @@ if __name__ == '__main__':
     for epoch_num in iterator:
         torch.cuda.empty_cache()
         time1 = time.time()
-        for i_batch,batch_data in enumerate(train_dataloder):
+        for training_i_batch,training_batch_data in enumerate(train_dataloder):
             time2 = time.time()
 
-            input_data, labels = batch_data
-            input_data, labels = input_data.to(device), labels.to(device)
+            training_input_data, training_labels = training_batch_data
+            training_input_data, training_labels = training_input_data.to(device), training_labels.to(device)
 
-            outputs = model(input_data).squeeze()
+            training_outputs = model(training_input_data).squeeze()
 
-            loss = criteria(outputs[:,1,...],labels.float())
+            loss = criteria(training_outputs[:,1,...],training_labels.float())
 
             optimizer.zero_grad()
             loss.backward()
@@ -159,64 +159,64 @@ if __name__ == '__main__':
 
         # eval
         with torch.no_grad():
-                model.eval()
-                show_id = random.randint(0,len(val_iteriter))
-                for id_val,val_data in enumerate(val_iteriter):
-                    input_data, labels = val_data
-                    input_data, labels = input_data.to(device), labels.to(device)
-                    outputs = model(input_data)
-                    if args.num_classes == 2:
-                        outputs = torch.sigmoid(outputs)
-                        preds = (outputs[:,1,:] > 0.5).float()
-                    else:
-                        preds = torch.softmax(outputs,dim=1).argmax().squeeze()
-                    evaluator.add(preds,labels.unsqueeze(1))
-                metrics = evaluator.compute()
-                Sensitivity = metrics['Sensitivity']
-                Specificity = metrics['Specificity']
-                Precision = metrics['Precision']
-                Accuracy = metrics['Accuracy']
-                F1 = metrics['F1-score']
-
-                evaluator.reset()
-                writer.add_scalar('val/Sensitivity', Sensitivity, epoch_num)
-                writer.add_scalar('val/Specificity', Specificity, epoch_num)
-                writer.add_scalar('val/Precision', Precision, epoch_num)
-                writer.add_scalar('val/Accuracy', Accuracy, epoch_num)
-                writer.add_scalar('val/F1-score', F1, epoch_num)
-
-                # 检查F1指标是否有提升
-                if F1 > best_f1:
-                    best_f1 = F1
-                    no_improve_epoch = 0
-                    name = "best_f1" + str(round(best_f1, 4)) + '_epoch_' + str(epoch_num) + '.pth'
-                    save_mode_path = os.path.join(
-                        snapshot_path, name)
-                    previous_files = glob.glob(os.path.join(snapshot_path, '*best_f1*.pth'))
-                    for file_path in previous_files:
-                        os.remove(file_path)
-
-                    torch.save(model.state_dict(), save_mode_path)
-
-                    print("Epoch {}: New best F1-score: {:.4f}. Model saved.".format(epoch_num, best_f1))
+            model.eval()
+            show_id = random.randint(0,len(val_iteriter))
+            for val_id,val_data in enumerate(val_iteriter):
+                val_input_data, val_labels = val_data
+                val_input_data, val_labels = val_input_data.to(device), val_labels.to(device)
+                val_outputs = model(val_input_data)
+                if args.num_classes == 2:
+                    val_outputs = torch.sigmoid(val_outputs)
+                    preds = (val_outputs[:,1,:] > 0.5).float()
                 else:
-                    no_improve_epoch += 1
-                    print("Epoch {}: No improvement in F1-score. Best is {:.4f}.".format(epoch_num, best_f1))
+                    preds = torch.softmax(val_outputs,dim=1).argmax().squeeze()
+                evaluator.add(preds,val_labels.unsqueeze(1))
+            metrics = evaluator.compute()
+            Sensitivity = metrics['Sensitivity']
+            Specificity = metrics['Specificity']
+            Precision = metrics['Precision']
+            Accuracy = metrics['Accuracy']
+            F1 = metrics['F1-score']
 
-                # 如果F1指标没有提高，则通过scheduler降低学习率
-                scheduler.step(F1)
+            evaluator.reset()
+            writer.add_scalar('val/Sensitivity', Sensitivity, epoch_num)
+            writer.add_scalar('val/Specificity', Specificity, epoch_num)
+            writer.add_scalar('val/Precision', Precision, epoch_num)
+            writer.add_scalar('val/Accuracy', Accuracy, epoch_num)
+            writer.add_scalar('val/F1-score', F1, epoch_num)
 
-                # 如果F1指标连续多个epoch没有提高，提前终止训练
-                if no_improve_epoch >= args.early_stop_patience:
-                    print("Early stopping triggered after {} epochs without improvement in F1-score.".format(
-                        no_improve_epoch))
-                    break
+            # 检查F1指标是否有提升
+            if F1 > best_f1:
+                best_f1 = F1
+                no_improve_epoch = 0
+                name = "best_f1" + str(round(best_f1, 4)) + '_epoch_' + str(epoch_num) + '.pth'
+                save_mode_path = os.path.join(
+                    snapshot_path, name)
+                previous_files = glob.glob(os.path.join(snapshot_path, '*best_f1*.pth'))
+                for file_path in previous_files:
+                    os.remove(file_path)
 
-                if epoch_num % args.save_period == 0:
-                    name = 'epoch_' + str(epoch_num) + '.pth'
-                    save_mode_path = os.path.join(
-                        snapshot_path, name)
-                    torch.save(model.state_dict(), save_mode_path)
+                torch.save(model.state_dict(), save_mode_path)
+
+                print("Epoch {}: New best F1-score: {:.4f}. Model saved.".format(epoch_num, best_f1))
+            else:
+                no_improve_epoch += 1
+                print("Epoch {}: No improvement in F1-score. Best is {:.4f}.".format(epoch_num, best_f1))
+
+            # 如果F1指标没有提高，则通过scheduler降低学习率
+            scheduler.step(F1)
+
+            # 如果F1指标连续多个epoch没有提高，提前终止训练
+            if no_improve_epoch >= args.early_stop_patience:
+                print("Early stopping triggered after {} epochs without improvement in F1-score.".format(
+                    no_improve_epoch))
+                break
+
+            if epoch_num % args.save_period == 0:
+                name = 'epoch_' + str(epoch_num) + '.pth'
+                save_mode_path = os.path.join(
+                    snapshot_path, name)
+                torch.save(model.state_dict(), save_mode_path)
 
 
 
