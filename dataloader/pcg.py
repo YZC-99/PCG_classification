@@ -45,7 +45,7 @@ class PhysioNetDataset(Dataset):
             current_org_label = data_info.split(',')[2]
             current_label = 0 if current_org_label == '-1' else 1
             if training:
-                sliding_step_size = 2500 if current_org_label == -1 else 650
+                sliding_step_size = 2500 if current_org_label == '-1' else 650
             else:
                 sliding_step_size = 2500
 
