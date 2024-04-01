@@ -30,7 +30,7 @@ parser.add_argument('--fold',type=int,default=1)
 parser.add_argument('--num_classes',type=int,default=2)
 parser.add_argument('--batch_size',type=int,default=4)
 parser.add_argument('--val_batch_size',type=int,default=4)
-parser.add_argument('--max_epoch',type=int,default=1000)
+parser.add_argument('--max_epoch',type=int,default=500)
 parser.add_argument('--early_stop_patience',type=int,default=30)
 parser.add_argument('--save_period',type=int,default=10)
 
@@ -199,6 +199,15 @@ if __name__ == '__main__':
                 torch.save(model.state_dict(), save_mode_path)
 
                 print("Epoch {}: New best F1-score: {:.4f}. Model saved.".format(epoch_num, best_f1))
+
+                # 更新metrics.txt
+                metrics_path = os.path.join(snapshot_path, "metrics.txt")
+                with open(metrics_path, 'w') as f:
+                    f.write("Sensitivity = {:.4f}\n".format(metrics['Sensitivity']))
+                    f.write("Specificity = {:.4f}\n".format(metrics['Specificity']))
+                    f.write("Precision = {:.4f}\n".format(metrics['Precision']))
+                    f.write("Accuracy = {:.4f}\n".format(metrics['Accuracy']))
+                    f.write("F1 = {:.4f}\n".format(metrics['F1-score']))
             else:
                 no_improve_epoch += 1
                 print("Epoch {}: No improvement in F1-score. Best is {:.4f}.".format(epoch_num, best_f1))
