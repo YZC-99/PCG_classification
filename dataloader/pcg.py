@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import Dataset
 import os
 from scipy import signal
-import samplerate
+# import samplerate
 import numpy as np
 import librosa
 
@@ -25,7 +25,7 @@ def band_pass_filter(original_signal, order, fc1, fc2, fs):
     return new_signal
 
 def down_sample(audio_data,fs):
-    data = samplerate.resample(audio_data.T, 1000 / fs, converter_type='sinc_best').T
+    data = librosa.resample(audio_data, orig_sr=fs, target_sr=1000)
     return data
 
 class PhysioNetDataset(Dataset):
