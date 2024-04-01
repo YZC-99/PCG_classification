@@ -26,6 +26,7 @@ parser.add_argument('--lr_decay_patience',type=int,default=6)
 # ==============lr===================
 
 # ==============training params===================
+parser.add_argument('--fold',type=int,default=1)
 parser.add_argument('--num_classes',type=int,default=2)
 parser.add_argument('--batch_size',type=int,default=4)
 parser.add_argument('--val_batch_size',type=int,default=4)
@@ -87,11 +88,14 @@ if __name__ == '__main__':
 
     # init dataset
     root_base = 'E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/training'
-    csv_path = "E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/annotations/annotations/all_labels_samples.csv"
+    train_csv_path = "E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/annotations/annotations/all_labels_samples.csv"
+    val_csv_path = "E:/Deep_Learning_DATABASE/PCG/PhysioNetCinC_Challenge_2016/annotations/annotations/all_labels_samples.csv"
     if args.autodl:
-        root_base = '/root/autodl-tmp/'
+        root_base = '/root/autodl-tmp/PhysioNetCinC_Challenge_2016/training'
+        train_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-training.csv"
+        val_csv_path = "./datasets/PhysioNetCinC_Challenge_2016/{}-fold-val.csv"
 
-    train_dataset = PhysioNetDataset(root_base,csv_path)
+    train_dataset = PhysioNetDataset(root_base,train_csv_path)
 
     train_dataloder = DataLoader(train_dataset,
                                 batch_size=args.batch_size,
@@ -101,7 +105,7 @@ if __name__ == '__main__':
                                 shuffle=True
                                     )
 
-    val_dataset = PhysioNetDataset(root_base,csv_path,training=False)
+    val_dataset = PhysioNetDataset(root_base,val_csv_path,training=False)
 
     val_dataloder = DataLoader(val_dataset,batch_size=args.val_batch_size,num_workers=1,drop_last=False)
 
